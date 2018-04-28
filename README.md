@@ -8,6 +8,15 @@ This also fixes a few bugs found on the original code that haven't yet been fixe
 ```
 npm install
 ```
+If you have any issues running this command on Windows (or any other operating system), make sure that the following line found on ```package.json``` is able to run on your operating system.
+
+```
+cp my_modules\oai-pmh-harvester\index.js node_modules\oai-pmh\src & cd node_modules\oai-pmh & npm i
+
+```
+
+An easy fix is to install the [Ubuntu Console on Windows 10](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/). This way the linux command can run on Win32 platforms.
+
 
 # How to run
 

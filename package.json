@@ -8,9 +8,13 @@
     "debug": "^3.1.0",
     "oai-pmh": "^1.1.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "run-script-os": "^1.0.3"
+  },
   "scripts": {
-    "prepare": "cp my_modules/oai-pmh-harvester/index.js node_modules/oai-pmh/src; cd node_modules/oai-pmh/;npm i",
+    "preaper": "run-script-os",
+    "prepare:win32": "cp my_modules\\oai-pmh-harvester\\index.js node_modules\\oai-pmh\\src & cd node_modules\\oai-pmh & npm i",
+    "prepare:darwin:linux": "cp my_modules/oai-pmh-harvester/index.js node_modules/oai-pmh/src; cd node_modules/oai-pmh/;npm i",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node demo.js"
   },
