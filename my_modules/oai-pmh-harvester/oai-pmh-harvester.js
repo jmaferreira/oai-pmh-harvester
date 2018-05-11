@@ -8,8 +8,12 @@ class OaiPmhHarvester {
         this.metadataPrefix = metadataPrefix;
     }
 
-    harvest(processItemFunc, callback) {
-        this.harvestAsync(this.dataProviderUrl, processItemFunc, callback);
+    async harvest(processItemFunc, callback) {
+        if(callback) {
+            this.harvestAsync(this.dataProviderUrl, processItemFunc, callback);
+        } else {
+            return this.harvestAsync(this.dataProviderUrl, processItemFunc);
+        }        
     }
 
     async harvestAsync(dataProviderUrl, itemProcessingFunction, callback) {
@@ -21,9 +25,14 @@ class OaiPmhHarvester {
 
         for (const next of iterator) {
             const item = await next;
-            itemProcessingFunction(item);
+            let record = await itemProcessingFunction(item);
+            counter++;
         }
-        callback(null, "done");
+        if(callback) {
+            return callback(null, counter);
+        } else {
+            return counter; // return promisse
+        }
     }
 }
 
