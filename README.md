@@ -60,7 +60,7 @@ async function processItem(item) {
 Copy the folder "my_modules" to your project. Require the ```oai-pmh-harvester``` module as the example bellow:
 
 
-```
+```javascript
 const oaipmh = require('./my_modules/oai-pmh-harvester/oai-pmh-harvester.js');
 
 const dataProviderUrl = 'http://repositorium.sdum.uminho.pt/oai/oai';
