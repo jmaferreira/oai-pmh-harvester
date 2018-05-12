@@ -13,25 +13,42 @@ class OaiPmhHarvester {
             this.harvestAsync(this.dataProviderUrl, processItemFunc, callback);
         } else {
             return this.harvestAsync(this.dataProviderUrl, processItemFunc);
-        }        
+        }
     }
 
     async harvestAsync(dataProviderUrl, itemProcessingFunction, callback) {
         debug(`harvesting ${dataProviderUrl}`)
         let counter = 0;
+        let error = null;
 
         let oaiPmh = new OaiPmhModule.OaiPmh(dataProviderUrl);
-        let iterator = oaiPmh.listRecords( {'metadataPrefix': this.metadataPrefix} );
 
-        for (const next of iterator) {
-            const item = await next;
-            let record = await itemProcessingFunction(item);
-            counter++;
-        }
+        let iterator = oaiPmh.listRecords( {
+        'metadataPrefix': this.metadataPrefix,
+        //'from': '2018-05-10T13:08:10Z',
+        //'until': '2018-05-14T13:08:10Z'
+        });
+
+
+        try {
+            for (const next of iterator) {
+                const item = await next;
+                let record = await itemProcessingFunction(item);
+                counter++;
+            }
+
+        } catch(err) {
+            error = err;
+        } 
+
         if(callback) {
-            return callback(null, counter);
+            return callback(error, counter);
         } else {
+          if(error) {
+              throw error;
+          } else {
             return counter; // return promisse
+          }
         }
     }
 }

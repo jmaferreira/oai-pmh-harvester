@@ -2,20 +2,13 @@
   "name": "oai-pmh-harvester",
   "version": "1.0.0",
   "description": "OAI-PMH Harvester",
-  "main": "harvest.js",
-  "dependencies": {
-    "async": "^2.6.0",
-    "debug": "^3.1.0",
-    "oai-pmh": "^1.1.1"
-  },
+  "main": "demo.js",
+  "dependencies": {},
   "devDependencies": {
     "run-script-os": "^1.0.3"
   },
   "scripts": {
-    "preaper": "run-script-os",
-    "prepare:win32": "cp my_modules\\oai-pmh-harvester\\index.js node_modules\\oai-pmh\\src & cd node_modules\\oai-pmh & npm i",
-    "prepare:darwin:linux": "cp my_modules/oai-pmh-harvester/index.js node_modules/oai-pmh/src; cd node_modules/oai-pmh/;npm i",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "cd my_modules/oai-pmh-harvester/; npm i",
     "start": "node demo.js"
   },
   "author": "Miguel Ferreira",
