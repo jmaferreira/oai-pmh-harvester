@@ -1,8 +1,8 @@
 const oaipmh = require('./my_modules/oai-pmh-harvester/oai-pmh-harvester.js');
 
 // a valid data provider url
-const dataProviderUrl = 'http://repositorium.sdum.uminho.pt/oai/oai';
-//const dataProviderUrl = 'http://ciencipca.ipca.pt/oaiextended/request';
+//const dataProviderUrl = 'http://repositorium.sdum.uminho.pt/oai/oai';
+const dataProviderUrl = 'http://ciencipca.ipca.pt/oaiextended/request';
 
 // instanciate a new harvester object
 let harvester = new oaipmh.Harvester(dataProviderUrl);
@@ -34,13 +34,14 @@ async function main() {
         let recordCount = await harvester.harvest(processItem);
         console.log(`A total of ${recordCount} records have been harvested!`);
     } catch(err) {
-        console.debug(err);
+        //console.debug(err);
     }
 }
 
 main();
 
+
 process.on('unhandledRejection', (reason, p) => {
-    console.log('MF Unhandled Rejection at: ', p, 'reason:', reason);
+//    console.log('MF Unhandled Rejection at: ', p, 'reason:', reason);
     // application specific logging, throwing an error, or other logic here
-  });
+});

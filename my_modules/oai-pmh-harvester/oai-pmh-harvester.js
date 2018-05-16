@@ -23,14 +23,16 @@ class OaiPmhHarvester {
 
         let oaiPmh = new OaiPmhModule.OaiPmh(dataProviderUrl);
 
-        let iterator = oaiPmh.listRecords( {
-        'metadataPrefix': this.metadataPrefix,
-        //'from': '2018-05-10T13:08:10Z',
-        //'until': '2018-05-14T13:08:10Z'
+        let iterator = oaiPmh.listRecords({
+            'metadataPrefix': this.metadataPrefix,
+            'from': '2017-08-01T13:08:10Z',
+            'until': '2017-08-06T13:08:10Z'
         });
 
 
+
         try {
+                        
             for (const next of iterator) {
                 const item = await next;
                 let record = await itemProcessingFunction(item);
